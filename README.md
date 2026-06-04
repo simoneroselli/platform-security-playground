@@ -1,6 +1,6 @@
 # Platform Security Playground 🧪
 
-Welcome to my personal playground and research repository. This space serves as a hands-on notebook where I collect deep-dive analyses, practical experiments, and notes regarding various security scenarios encountered in the cloud-native ecosystem.
+Welcome to this personal playground and research repository. This space serves as a hands-on notebook where I collect deep-dive analyses, practical experiments, and notes regarding various security scenarios encountered in the cloud-native ecosystem.
 
 ## Repository Structure
 
