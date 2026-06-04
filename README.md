@@ -12,7 +12,7 @@ The repo is organized into focused, self-contained lab directories. Each directo
 | :--- | :--- | :--- |
 | **Container Hardening** | [Multistage Builds](./container-hardening/01-multistage-builds/README.md) | Eliminating build-tool attack surface and minimizing production image footprints. |
 | **Container Hardening** | [Non-Root User Execution](./container-hardening/02-non-root-user/README.md) | Enforcing least privilege, handling macOS UID mapping, and bypassing Distroless metadata quirks for K8s Admission Controllers.
-| **Container Hardening** | [Prevent Container Privilege Escalation](./container-hardening/03-prevent-privilege-escalation/README.md) | Blocking dynamic UID elevation. |- [Platform Security Playground 🧪](#platform-security-playground-)
+| **Container Hardening** | [Prevent Container Privilege Escalation](./container-hardening/03-prevent-privilege-escalation/README.md) | Preventing dynamic UID elevation. |- [Platform Security Playground 🧪](#platform-security-playground-)
 
 ---
 
