@@ -10,13 +10,13 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// os.Getuid() returns the numeric user id of the caller
 		uid := os.Getuid()
-		fmt.Fprintf(w, "Welcome to Docker Non-Root User Example!\n")
-		fmt.Fprintf(w, "Your UID is: %d\n", uid)
+		fmt.Fprintf(w, "Welcome to the Security Playground!\n")
+		fmt.Fprintf(w, "Current Process Running UID:: %d\n", uid)
 
 		if uid == 0 {
-			fmt.Fprint(w, "⚠️WARNING: running as ROOT!\n")
+			fmt.Fprint(w, "⚠️WARNING: Running as ROOT!\n")
 		} else {
-			fmt.Fprint(w, "✅ SUCCESS:Running as NON-ROOT user.\n")
+			fmt.Fprint(w, "✅ SUCCESS: Running as NON-ROOT user.\n")
 		}
 	})
 	
