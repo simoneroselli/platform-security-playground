@@ -19,7 +19,8 @@ COPY --from=builder /app/webserver /webserver
 
 # EXPLICITLY SWITCH TO NON-ROOT USER
 # Distroless provides a user named 'nonroot' with UID 65532
-USER nonroot:nonroot
+#USER nonroot:nonroot 
+USER 65532:65532
 
 EXPOSE 8080
 
