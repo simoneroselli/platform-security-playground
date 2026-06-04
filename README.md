@@ -1,1 +1,1 @@
-# devops-security-playground
+# k8s-security-playground
