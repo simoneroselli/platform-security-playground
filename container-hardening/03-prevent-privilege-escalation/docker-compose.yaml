@@ -1,0 +1,11 @@
+services:
+  webserver:
+    image: my-standard-app:latest
+    container_name: secure-runtime-demo
+    ports:
+      - "8080:8080"
+    user: "10001:10001"
+    # Kernel mitigation configuration
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: security-playground-app
+  labels:
+    app: secure-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secure-web
+  template:
+    metadata:
+      labels:
+        app: secure-web
+    spec:
+      containers:
+      - name: webserver
+        image: playground:v2
+        ports:
+        - containerPort: 8080
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 65532
+          # Crucial flag to enable PR_SET_NO_NEW_PRIVS in the Linux kernel
+          allowPrivilegeEscalation: false
