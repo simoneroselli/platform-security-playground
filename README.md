@@ -10,8 +10,8 @@ The repo is organized into focused, self-contained lab directories. Each directo
 
 | Category | Deep-Dive Scenario | Key Findings & Quirks Covered |
 | :--- | :--- | :--- |
-| **01. Container Hardening** | [Multistage Builds](./01-container-hardening/multistage-builds/README.md) | Eliminating build-tool attack surface and minimizing production image footprints. |
-| **01. Container Hardening** | [Non-Root User Execution](./01-container-hardening/non-root-user/README.md) | Enforcing least privilege, handling macOS UID mapping, and bypassing Distroless metadata quirks for K8s Admission Controllers.
+| **01. Container Hardening** | [Multistage Builds](./container-hardening/multistage-builds/README.md) | Eliminating build-tool attack surface and minimizing production image footprints. |
+| **01. Container Hardening** | [Non-Root User Execution](./container-hardening/non-root-user/README.md) | Enforcing least privilege, handling macOS UID mapping, and bypassing Distroless metadata quirks for K8s Admission Controllers.
 
 ---
 
