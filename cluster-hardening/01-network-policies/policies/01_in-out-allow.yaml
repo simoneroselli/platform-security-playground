@@ -1,0 +1,18 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend-to-backend
+  namespace: default # 💡 Corrected to target your current active namespace
+spec:
+  podSelector:
+    matchLabels:
+      app: vote-worker # Targets your backend pod inside 'default'
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: vote-frontend # Only accepts traffic from your frontend pod inside 'default'
+    ports:
+    - protocol: TCP
+      port: 5000 # Matches the port your backend is listening on
