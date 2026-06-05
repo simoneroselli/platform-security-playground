@@ -59,3 +59,78 @@ spec:
       - name: frontend
         image: dockersamples/visualizer:stable
 ```
+
+## Restricting Pod Access using Kubernetes RBAC (Least Privilege Example)
+
+To configure the `vote-frontend-sa` service account so that it can **ONLY** view/list a specific target pod (such as a `redis` pod) and is denied access to everything else, you need to implement a strict `Role` and `RoleBinding` that limits permissions to that specific resource name within the namespace.
+
+### 1. Define the Manifests
+
+Create a file named `rbac-vote-apps.yaml` with the following configuration. Notice the use of `resourceNames` to restrict permissions to the exact pod instance.
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: vote-apps
+  name: vote-frontend-redis-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+  resourceNames: ["redis"] # Strict limitation to only the redis pod
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: vote-apps
+  name: vote-frontend-redis-read-binding
+subjects:
+- kind: ServiceAccount
+  name: vote-frontend-sa
+  namespace: vote-apps
+roleRef:
+  kind: Role
+  name: vote-frontend-redis-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+## 2. Apply the Configuration
+
+Deploy the RBAC resources to your cluster via kubectl:
+```bash
+kubectl apply -f rbac-vote-apps.yaml
+```
+
+## 3. Verify and Audit Permissions
+
+You can confirm that your logical boundaries and the principle of least privilege are functioning as expected by running cross-boundary checks via kubectl auth can-i:
+
+### Scenario A: vote-frontend CAN see the redis pod
+
+```bash
+kubectl auth can-i get pod/redis --as=system:serviceaccount:vote-apps:vote-frontend-sa -n vote-apps
+```
+```plaintext
+yes
+```
+
+### Scenario B: redis CANNOT see the vote-frontend pod
+(Ensures that if the Redis container is compromised, the attacker cannot scrape or discover your frontend infrastructure)
+
+```bash
+kubectl auth can-i get pod/vote-frontend --as=system:serviceaccount:vote-apps:redis-sa -n vote-apps
+```
+```plaintext
+no
+```
+
+### Scenario C: vote-frontend CANNOT see cluster-wide or blanket pods
+(Verifies that wildcard namespace-wide queries targeting any other unapproved pods are dropped by the API server)
+
+```bash
+kubectl auth can-i get pods --as=system:serviceaccount:vote-apps:vote-frontend-sa -n vote-apps
+```
+```plaintext
+no
+```

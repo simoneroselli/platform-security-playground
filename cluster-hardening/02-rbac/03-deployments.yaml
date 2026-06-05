@@ -40,7 +40,7 @@ spec:
       serviceAccountName: vote-frontend-sa # 👈 Bound identity
       containers:
       - name: vote
-        image: dockersamples/examplevotingapp_vote:before # playground app
+        image: dockersamples/examplevotingapp_vote:before
         ports:
         - containerPort: 80
           name: vote
