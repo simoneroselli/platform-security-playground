@@ -15,7 +15,7 @@ The repo is organized into focused, self-contained lab directories. Each directo
 | **Container Hardening** | [Prevent Container Privilege Escalation](./container-hardening/03-prevent-privilege-escalation/README.md) | Blocking runtime privilege escalation via SecurityContext controls to prevent capability elevation. |
 | **Container Hardening** | [Limit Container Resources](./container-hardening/04-limit-container-resources/README.md) | Setting CPU and memory resource requests and limits to prevent resource exhaustion and DoS attacks. |
 | **Container Hardening** | [Automate Vulnerability Scanning](./container-hardening/05-automate-vulnerability-scanning/README.md) | Automating container image scanning to detect vulnerabilities earlier in the pipeline. |
-
+| **Cluster Hardening** | [Zero-Trust Network Policies](./cluster-hardening/01-network-policies/README.md) | Enforcing namespace-wide microsegmentation and least-privilege egress limits to prevent lateral movement. |
 
 ---
 
