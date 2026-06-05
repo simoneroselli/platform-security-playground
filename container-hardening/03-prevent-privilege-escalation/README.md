@@ -2,8 +2,8 @@
 
 - [Prevent Container Privilege Escalation](#prevent-container-privilege-escalation)
   - [Problem description](#problem-description)
-  - [distroless solve this by design](#distroless-solve-this-by-design)
-  - [Secure runtime!](#secure-runtime)
+  - [Distroless solve this by design](#distroless-solve-this-by-design)
+  - [Secure Runtime](#secure-runtime)
     - [Mitigation](#mitigation)
       - [docker](#docker)
       - [docker-compose](#docker-compose)
@@ -25,7 +25,7 @@ If successful, the attacker's process hooks into the operating system and dynami
 
 ---
 
-## distroless solve this by design
+## Distroless solve this by design
 
 Google's Distroless images mitigate a significant portion of this risk out of the box because **they are stripped of all traditional Linux operating system binaries**. 
 
@@ -33,7 +33,7 @@ There is no `sudo`, no `su`, no package managers, and no standard shell-level ut
 
 ---
 
-## Secure runtime!
+## Secure Runtime
 
 If you are **not** using a Distroless image (e.g., you are building on standard Alpine, Ubuntu, or Debian images because your application requires specific OS packages), relying solely on file elimination isn't enough. If an attacker downloads an exploit from the internet, a static file-stripping step during your Docker build phase will fail to stop them.
 

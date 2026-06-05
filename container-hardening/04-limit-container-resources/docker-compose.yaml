@@ -1,0 +1,16 @@
+services:
+  webserver:
+    image: my-standard-app:latest
+    container_name: resource-limits-demo
+    ports:
+      - "8080:8080"
+      # Hardware boundaries enforced at the container level
+      deploy:
+        resources:
+          limits:
+            cpus: '0.50'
+            memory: 512M
+          reservations:
+            cpus: '0.25'
+            memory: 256M
+    restart: unless-stopped

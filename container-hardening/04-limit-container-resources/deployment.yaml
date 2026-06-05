@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: security-playground-app
+  labels:
+    app: resource-limited-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resource-limited-web
+  template:
+    metadata:
+      labels:
+        app: resource-limited-web
+    spec:
+      containers:
+      - name: webserver
+        image: playground:v2
+        ports:
+        - containerPort: 8080
+        resources:
+          # Guaranteed minimums allocated to the container
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          # Absolute ceilings the container cannot exceed
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
