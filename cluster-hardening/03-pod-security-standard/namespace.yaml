@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vote-apps
+  labels:
+    # 🚫 ENFORCE: Block any pods that do not comply with the 'Restricted' profile
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+
+    # ⚠️ WARN: Send a user-facing terminal warning during deployment if things look wrong
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: latest
