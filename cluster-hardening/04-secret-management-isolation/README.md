@@ -1,6 +1,6 @@
-# 4. Secret Management Isolation: ESO + AWS Secret Manager
+# Secret Management Isolation: ESO + AWS Secret Manager
 
-- [4. Secret Management Isolation: ESO + AWS Secret Manager](#4-secret-management-isolation-eso--aws-secret-manager)
+- [Secret Management Isolation: ESO + AWS Secret Manager](#secret-management-isolation-eso--aws-secret-manager)
   - [Purpose](#purpose)
     - [Components in Scope](#components-in-scope)
     - [Operational Goal](#operational-goal)
