@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: external-secrets
+  namespace: flux-system
+spec:
+  interval: 1h
+  values:
+    extraEnv:
+      - name: AWS_ENDPOINT_URL
+        value: "http://host.k3d.internal:4566"
+      - name: AWS_ENDPOINT_URL_SECRETSMANAGER
+        value: "http://host.k3d.internal:4566"
+      - name: AWS_SECRETSMANAGER_ENDPOINT
+        value: "http://host.k3d.internal:4566"
+      - name: AWS_STS_REGIONAL_ENDPOINTS
+        value: "regional"
+  chart:
+    spec:
+      chart: external-secrets
+      version: "0.9.11" # Standard stable version
+      sourceRef:
+        kind: HelmRepository
+        name: external-secrets
+        namespace: flux-system
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: external-secrets
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://charts.external-secrets.io
