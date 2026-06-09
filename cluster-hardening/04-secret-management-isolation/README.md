@@ -1,5 +1,23 @@
 # 4. Secret Management Isolation: ESO + AWS Secret Manager
 
+- [4. Secret Management Isolation: ESO + AWS Secret Manager](#4-secret-management-isolation-eso--aws-secret-manager)
+  - [Purpose](#purpose)
+    - [Components in Scope](#components-in-scope)
+    - [Operational Goal](#operational-goal)
+  - [Kubernetes Objects Reference](#kubernetes-objects-reference)
+    - [1. SecretStore (`localstack-backend`)](#1-secretstore-localstack-backend)
+    - [2. ExternalSecret (`db-credentials-sync`)](#2-externalsecret-db-credentials-sync)
+    - [3. Native Kubernetes Secret (`k8s-app-db-secret`)](#3-native-kubernetes-secret-k8s-app-db-secret)
+  - [Tutorial](#tutorial)
+    - [Start LocalStack](#start-localstack)
+    - [Create a dummy secret inside LocalStack Secrets Manager](#create-a-dummy-secret-inside-localstack-secrets-manager)
+    - [Create LocalStack Access Secret in k3d (credentials.yaml)](#create-localstack-access-secret-in-k3d-credentialsyaml)
+    - [Install External Secrets Operator in k3d (helm.yaml)](#install-external-secrets-operator-in-k3d-helmyaml)
+    - [Configure the ESO SecretStore (secretstore.yaml)](#configure-the-eso-secretstore-secretstoreyaml)
+    - [Create the ExternalSecret](#create-the-externalsecret)
+    - [Check the status of your ExternalSecret](#check-the-status-of-your-externalsecret)
+    - [Verify the generated native Kubernetes secret](#verify-the-generated-native-kubernetes-secret)
+
 ## Purpose
 The primary objective of this project is to simulate a production-grade cloud secret management pipeline completely offline within a local development environment. By integrating the **External Secrets Operator (ESO)** with **AWS Secret Manager** (LocalStack), we replicate how enterprise Kubernetes clusters dynamically fetch, securely inject, and automatically rotate sensitive infrastructure credentials.
 
@@ -10,7 +28,7 @@ The primary objective of this project is to simulate a production-grade cloud se
 ### Operational Goal
 The definitive success metric of this configuration is to establish a 15-second synchronization loop that securely bridges the cluster boundary. The pipeline pulls mock database administrative credentials out of the isolated LocalStack container, formats them natively, and dynamically generates a functional, base64-encoded Kubernetes Secret ready for immediate application consumption.
 
-![image](../../../doc/src/simplified-secrets-stack.png)
+![image](../../doc/src/simplified-secrets-stack.png)
 
 ## Kubernetes Objects Reference
 
