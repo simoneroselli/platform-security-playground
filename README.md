@@ -18,7 +18,7 @@ The repo is organized into focused, self-contained lab directories. Each directo
 | **Cluster Hardening** | [Zero-Trust Network Policies](./cluster-hardening/01-network-policies/README.md) | Enforcing namespace-wide microsegmentation and least-privilege egress limits to prevent lateral movement. |
 | **Cluster Hardening** | [Namespaces & RBAC Boundaries](./cluster-hardening/02-namespaces-rbac/README.md) | Establishing isolated workload environments and stripping ambient API tokens to enforce absolute control-plane least privilege. |
 | **Cluster Hardening** | [Pod Security Standards](./cluster-hardening/03-pod-security-standard/README.md) | Enforcing native Admission Control via Restricted profiles to block root containers and strip dangerous Linux capabilities. |
-| **Cluster Hardening** | [External Secrets Operator & LocalStack](./cluster-hardening/04-secret-management-isolation/README.md) | Bridging cloud APIs into local clusters by setting up a 15s synchronization loop between ESO and a mocked AWS Secrets Manager, fixing SDK token signature validation loops via custom Helm overrides. |
+| **Cluster Hardening** | [External Secrets Operator & LocalStack](./cluster-hardening/04-secret-management-isolation/README.md) | Isolating local development environments via External Secrets Operator (ESO) and LocalStack, bypassing cluster token injection to enforce static mock credentials. |
 
 ---
 
