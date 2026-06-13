@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  secure-app:
+    image: my-app:latest
+    read_only: true
+    tmpfs:
+      - /tmp:noexec,nosuid,nodev,size=64M

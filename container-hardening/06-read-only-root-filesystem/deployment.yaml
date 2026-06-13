@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secure-app-csi
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: web-app
+        image: alpine
+        securityContext:
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-noexec
+      volumes:
+      - name: tmp-noexec
+        ephemeral:
+          volumeClaimTemplate:
+            spec:
+              accessModes: [ "ReadWriteOnce" ]
+              # Pass your strict Linux mount security parameters here
+              mountOptions:
+                - noexec
+                - nosuid
+                - nodev
+              resources:
+                requests:
+                  storage: 64Mi
