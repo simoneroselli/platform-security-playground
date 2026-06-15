@@ -65,7 +65,7 @@ spec:
           sizeLimit: "64Mi"
 ```
 
-## So far so good! ..but, what prevent me to download malicious files directly into tmpfs and execute them?
+### So far so good! ..but what prevent attackers to download malicious files directly into tmpfs and execute them?
 
 ## Mounting tmpfs with noexec
 
@@ -83,7 +83,7 @@ services:
       - /tmp:noexec,nosuid,nodev,size=64M
 ```
 
-### Kubernetes: Pod SecurityContext (I did not test it!)
+### Kubernetes: Pod SecurityContext
 ```yaml
 ...
         securityContext:
